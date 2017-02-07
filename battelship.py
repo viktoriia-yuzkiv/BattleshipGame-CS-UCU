@@ -28,8 +28,9 @@ def has_ship(field, coordinates):
 
     (list, tuple) -> (bool)
 
-    Uses a list of lists (field) and coordinates of the needed element and verify if there is a ship with asked
-    coordinates in that field. Returns True or False.
+    Uses a list of lists (field) and coordinates of the needed element and
+    verify if there is a ship with asked coordinates in that field.
+    Returns True or False.
 
     """
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
@@ -44,8 +45,8 @@ def ship_size(field, coordinates):
 
     (list, tuple) -> (int)
 
-    Uses a list of lists (field) and coordinates of the needed element. Return the size of a ship, coordinates of
-    a part of which are given.
+    Uses a list of lists (field) and coordinates of the needed element.
+    Return the size of a ship, coordinates of a part of which are given.
 
     """
     len1 = 0
@@ -57,7 +58,8 @@ def ship_size(field, coordinates):
         i = 1
         while True:
             try:
-                if '*' in field[coordinates[1] - 1][letters.index(coordinates[0].upper()) + i]:
+                if '*' in field[coordinates[1] - 1][letters.index(
+                        coordinates[0].upper()) + i]:
                     len2 += 1
                     i += 1
                 else:
@@ -67,7 +69,8 @@ def ship_size(field, coordinates):
         i = 1
         while True:
             try:
-                if '*' in field[coordinates[1] - 1][letters.index(coordinates[0].upper()) - i]:
+                if '*' in field[coordinates[1] - 1][letters.index(
+                        coordinates[0].upper()) - i]:
                     len2 += 1
                     i += 1
                 else:
@@ -77,7 +80,8 @@ def ship_size(field, coordinates):
         i = 1
         while True:
             try:
-                if '*' in field[coordinates[1] - 1 + i][letters.index(coordinates[0].upper())]:
+                if '*' in field[coordinates[1] - 1 + i][letters.index(
+                        coordinates[0].upper())]:
                     len2 += 1
                     i += 1
                 else:
@@ -87,7 +91,8 @@ def ship_size(field, coordinates):
         i = 1
         while True:
             try:
-                if '*' in field[coordinates[1] - 1 - i][letters.index(coordinates[0].upper())]:
+                if '*' in field[coordinates[1] - 1 - i][letters.index(
+                        coordinates[0].upper())]:
                     len2 += 1
                     i += 1
                 else:
@@ -102,7 +107,8 @@ def is_valid(field):
 
     (list) -> (bool)
 
-    Uses a list of lists. Determinates if given field is valid. Returns True or False.
+    Uses a list of lists. Determinates if given field is valid.
+    Returns True or False.
 
     """
     if len(field) != 10:
@@ -130,24 +136,15 @@ def field_to_str(field):
 
     (list) -> (str)
 
-    Converts a list of lists into string and shows field on the screen.
+    Converts a list of lists into a string. Returns a string.
 
     """
-    print(' ', '_' * 11)
-    for i in field:
-        a = ''
-        for k in i:
-            a += k
-        print('|', a, '|')
-    print(' ', '_' * 10)
-    with open('field1.txt', 'w') as file1:
-        file1.write(' ' + '_' * 10 + '\n')
-        for i in field:
-            a = ''
-            for k in i:
-                a += k
-            file1.write('|' + a + '|' + '\n')
-        file1.write(' ' + '_' * 10 + '\n')
+    a = ''
+    for i in range(10):
+        for k in range(10):
+            a += field[i][k]
+        a += '\n'
+    return a
 
 
 def generate_field():
@@ -155,7 +152,7 @@ def generate_field():
 
     () -> (list)
 
-    Generates new field.
+    Generates new field. Returns a list of lists.
 
     """
     import random
@@ -180,104 +177,124 @@ def generate_field():
     my_board = paint_out_ship(new_board)
     for numm in range(2):
         while True:
-            position1_3 = random.randint(0, 9)
+            posit1_3 = random.randint(0, 9)
             position2_3 = random.randint(0, 9)
-            if my_board[position2_3][position1_3] == ' ':
-                my_board[position2_3][position1_3] = '*'
+            if my_board[position2_3][posit1_3] == ' ':
+                my_board[position2_3][posit1_3] = '*'
                 num1 = random.randint(1, 2)
                 if num1 == 1:
-                    if position1_3 < 6 and position1_3 > 4:
-                        if my_board[position2_3][position1_3 + 1] == ' ' and my_board[position2_3][position1_3 + 2] == ' ':
-                            my_board[position2_3][position1_3 + 1] = '*'
-                            my_board[position2_3][position1_3 + 2] = '*'
-                        elif my_board[position2_3][position1_3 + 1] == ' ' and my_board[position2_3][position1_3 - 1] == ' ':
-                            my_board[position2_3][position1_3 + 1] = '*'
-                            my_board[position2_3][position1_3 - 1] = '*'
-                        elif my_board[position2_3][position1_3 - 1] == ' ' and my_board[position2_3][position1_3 - 2] == ' ':
-                            my_board[position2_3][position1_3 - 1] = '*'
-                            my_board[position2_3][position1_3 - 2] = '*'
+                    if posit1_3 < 6 and posit1_3 > 4:
+                        if my_board[position2_3][posit1_3 + 1] == ' '\
+                                and my_board[position2_3][
+                                            posit1_3 + 2] == ' ':
+                            my_board[position2_3][posit1_3 + 1] = '*'
+                            my_board[position2_3][posit1_3 + 2] = '*'
+                        elif my_board[position2_3][posit1_3 + 1] == ' '\
+                                and my_board[position2_3][
+                                            posit1_3 - 1] == ' ':
+                            my_board[position2_3][posit1_3 + 1] = '*'
+                            my_board[position2_3][posit1_3 - 1] = '*'
+                        elif my_board[position2_3][posit1_3 - 1] == ' '\
+                                and my_board[position2_3][
+                                            posit1_3 - 2] == ' ':
+                            my_board[position2_3][posit1_3 - 1] = '*'
+                            my_board[position2_3][posit1_3 - 2] = '*'
                         else:
                             pass
-                    elif position1_3 <= 4:
-                        if my_board[position2_3][position1_3 + 1] == ' ' and my_board[position2_3][position1_3 + 2] == ' ':
-                            my_board[position2_3][position1_3 + 1] = '*'
-                            my_board[position2_3][position1_3 + 2] = '*'
+                    elif posit1_3 <= 4:
+                        if my_board[position2_3][posit1_3 + 1] == ' '\
+                               and my_board[position2_3][
+                                           posit1_3 + 2] == ' ':
+                            my_board[position2_3][posit1_3 + 1] = '*'
+                            my_board[position2_3][posit1_3 + 2] = '*'
                         else:
                             pass
-                    elif position1_3 >= 6:
-                        if my_board[position2_3][position1_3 - 1] == ' ' and my_board[position2_3][position1_3 - 2] == ' ':
-                            my_board[position2_3][position1_3 - 1] = '*'
-                            my_board[position2_3][position1_3 - 2] = '*'
+                    elif posit1_3 >= 6:
+                        if my_board[position2_3][posit1_3 - 1] == ' '\
+                               and my_board[position2_3][
+                                           posit1_3 - 2] == ' ':
+                            my_board[position2_3][posit1_3 - 1] = '*'
+                            my_board[position2_3][posit1_3 - 2] = '*'
                         else:
                             pass
                 else:
-                    if position1_3 < 6 and position1_3 > 4:
-                        if my_board[position2_3 + 1][position1_3] == ' ' and my_board[position2_3 + 2][position1_3] == ' ':
-                            my_board[position2_3 + 1][position1_3] = '*'
-                            my_board[position2_3 + 2][position1_3] = '*'
-                        elif my_board[position2_3 + 1][position1_3] == ' ' and my_board[position2_3 - 1][position1_3] == ' ':
-                            my_board[position2_3 + 1][position1_3] = '*'
-                            my_board[position2_3 - 1][position1_3] = '*'
-                        elif my_board[position2_3 - 1][position1_3] == ' ' and my_board[position2_3 - 2][position1_3] == ' ':
-                            my_board[position2_3 - 1][position1_3] = '*'
-                            my_board[position2_3 - 2][position1_3] = '*'
+                    if position2_3 < 6 and position2_3 > 4:
+                        if my_board[position2_3 + 1][posit1_3] == ' '\
+                                and my_board[position2_3 + 2][
+                                            posit1_3] == ' ':
+                            my_board[position2_3 + 1][posit1_3] = '*'
+                            my_board[position2_3 + 2][posit1_3] = '*'
+                        elif my_board[position2_3 + 1][posit1_3] == ' '\
+                                and my_board[position2_3 - 1][
+                                            posit1_3] == ' ':
+                            my_board[position2_3 + 1][posit1_3] = '*'
+                            my_board[position2_3 - 1][posit1_3] = '*'
+                        elif my_board[position2_3 - 1][posit1_3] == ' '\
+                                and my_board[position2_3 - 2][
+                                            posit1_3] == ' ':
+                            my_board[position2_3 - 1][posit1_3] = '*'
+                            my_board[position2_3 - 2][posit1_3] = '*'
                         else:
                             pass
-                    elif position1_3 <= 4:
-                        if my_board[position2_3 + 1][position1_3] == ' ' and my_board[position2_3 + 2][position1_3] == ' ':
-                            my_board[position2_3 + 1][position1_3] = '*'
-                            my_board[position2_3 + 2][position1_3] = '*'
+                    elif position2_3 <= 4:
+                        if my_board[position2_3 + 1][posit1_3] == ' '\
+                               and my_board[position2_3 + 2][
+                                    posit1_3] == ' ':
+                            my_board[position2_3 + 1][posit1_3] = '*'
+                            my_board[position2_3 + 2][posit1_3] = '*'
                         else:
                             pass
-                    elif position1_3 >= 6:
-                        if my_board[position2_3 - 1][position1_3] == ' ' and my_board[position2_3 - 2][position1_3] == ' ':
-                            my_board[position2_3 - 1][position1_3] = '*'
-                            my_board[position2_3 - 2][position1_3] = '*'
+                    elif position2_3 >= 6:
+                        if my_board[position2_3 - 1][posit1_3] == ' '\
+                               and my_board[position2_3 - 2][
+                                    posit1_3] == ' ':
+                            my_board[position2_3 - 1][posit1_3] = '*'
+                            my_board[position2_3 - 2][posit1_3] = '*'
                 my_board = paint_out_ship(my_board)
                 break
             else:
                 continue
     for numm in range(3):
         while True:
-            position1_3 = random.randint(0, 9)
-            position2_3 = random.randint(0, 9)
-            if my_board[position2_3][position1_3] == ' ':
-                my_board[position2_3][position1_3] = '*'
+            position1_2 = random.randint(0, 9)
+            position2_2 = random.randint(0, 9)
+            if my_board[position2_2][position1_2] == ' ':
+                my_board[position2_2][position1_2] = '*'
                 num1 = random.randint(1, 2)
                 if num1 == 1:
-                    if position1_3 < 8 and position1_3 > 1:
-                        if my_board[position2_3][position1_3 + 1] == ' ':
-                            my_board[position2_3][position1_3 + 1] = '*'
-                        elif my_board[position2_3][position1_3 - 1] == ' ':
-                            my_board[position2_3][position1_3 - 1] = '*'
+                    if position1_2 < 8 and position1_2 > 1:
+                        if my_board[position2_2][position1_2 + 1] == ' ':
+                            my_board[position2_2][position1_2 + 1] = '*'
+                        elif my_board[position2_2][position1_2 - 1] == ' ':
+                            my_board[position2_2][position1_2 - 1] = '*'
                         else:
                             pass
-                    elif position1_3 <= 1:
-                        if my_board[position2_3][position1_3 + 1] == ' ':
-                            my_board[position2_3][position1_3 + 1] = '*'
+                    elif position1_2 <= 1:
+                        if my_board[position2_2][position1_2 + 1] == ' ':
+                            my_board[position2_2][position1_2 + 1] = '*'
                         else:
                             pass
-                    elif position1_3 >= 8:
-                        if my_board[position2_3][position1_3 - 1] == ' ':
-                            my_board[position2_3][position1_3 - 1] = '*'
+                    elif position1_2 >= 8:
+                        if my_board[position2_2][position1_2 - 1] == ' ':
+                            my_board[position2_2][position1_2 - 1] = '*'
                         else:
                             pass
                 else:
-                    if position1_3 < 8 and position1_3 > 1:
-                        if my_board[position2_3 + 1][position1_3] == ' ':
-                            my_board[position2_3 + 1][position1_3] = '*'
-                        elif my_board[position2_3 - 1][position1_3] == ' ':
-                            my_board[position2_3 - 1][position1_3] = '*'
+                    if position2_2 < 8 and position2_2 > 1:
+                        if my_board[position2_2 + 1][position1_2] == ' ':
+                            my_board[position2_2 + 1][position1_2] = '*'
+                        elif my_board[position2_2 - 1][position1_2] == ' ':
+                            my_board[position2_2 - 1][position1_2] = '*'
                         else:
                             pass
-                    elif position1_3 <= 1:
-                        if my_board[position2_3 + 1][position1_3] == ' ':
-                            my_board[position2_3 + 1][position1_3] = '*'
+                    elif position2_2 <= 1:
+                        if my_board[position2_2 + 1][position1_2] == ' ':
+                            my_board[position2_2 + 1][position1_2] = '*'
                         else:
                             pass
-                    elif position1_3 >= 8:
-                        if my_board[position2_3 - 1][position1_3] == ' ':
-                            my_board[position2_3 - 1][position1_3] = '*'
+                    elif position2_2 >= 8:
+                        if my_board[position2_2 - 1][position1_2] == ' ':
+                            my_board[position2_2 - 1][position1_2] = '*'
                         else:
                             pass
                 my_board = paint_out_ship(my_board)
@@ -286,19 +303,21 @@ def generate_field():
                 continue
     for numm in range(4):
         while True:
-            position1_3 = random.randint(0, 9)
-            position2_3 = random.randint(0, 9)
-            if my_board[position2_3][position1_3] == ' ':
-                my_board[position2_3][position1_3] = '*'
+            position1_1 = random.randint(0, 9)
+            position2_1 = random.randint(0, 9)
+            if my_board[position2_1][position1_1] == ' ':
+                my_board[position2_1][position1_1] = '*'
                 my_board = paint_out_ship(my_board)
                 break
             else:
                 continue
+    for i in range(len(my_board)):
+        for k in range(len(my_board[i])):
+            my_board[i][k] = my_board[i][k].replace('-', ' ')
+    if not is_valid(my_board):
+        return generate_field()
+    return my_board
 
-
-    for i in my_board:
-        print(i)
-  #  return new_board
 
 def paint_out_ship(board):
     """
@@ -310,31 +329,24 @@ def paint_out_ship(board):
     for i in range(len(board)):
         for k in range(len(board[i])):
             if board[i][k] == '*':
-                try:
-                    if board[i + 1][k] == ' ':
-                        board[i + 1][k] = '-'
-                    if board[i - 1][k] == ' ':
-                        board[i - 1][k] = '-'
-                    if board[i][k + 1] == ' ':
-                        board[i][k + 1] = '-'
-                    if board[i][k - 1] == ' ':
-                        board[i][k - 1] = '-'
-                    if board[i + 1][k] == '-' and board[i][k + 1] == '-':
-                        board[i + 1][k + 1] = '-'
-                    if board[i - 1][k] == '-' and board[i][k - 1] == '-':
-                        board[i - 1][k - 1] = '-'
-                    if board[i][k - 1] == '-' and board[i + 1][k] == '-':
-                        board[i + 1][k - 1] = '-'
-                    if board[i - 1][k] == '-' and board[i][k + 1] == '-':
-                        board[i - 1][k + 1] = '-'
-                except:
-                    pass
+                if i + 1 < 10 and board[i + 1][k] == ' ':
+                    board[i + 1][k] = '-'
+                if i - 1 >= 0 and board[i - 1][k] == ' ':
+                    board[i - 1][k] = '-'
+                if k + 1 < 10 and board[i][k + 1] == ' ':
+                    board[i][k + 1] = '-'
+                if k - 1 >= 0 and board[i][k - 1] == ' ':
+                    board[i][k - 1] = '-'
+                if i + 1 < 10 and k + 1 < 10 and board[i + 1][k] == '-'\
+                        and board[i][k + 1] == '-':
+                    board[i + 1][k + 1] = '-'
+                if i - 1 >= 0 and k - 1 >= 0 and board[i - 1][k] == '-'\
+                        and board[i][k - 1] == '-':
+                    board[i - 1][k - 1] = '-'
+                if k - 1 >= 0 and i + 1 < 10 and board[i][k - 1] == '-'\
+                        and board[i + 1][k] == '-':
+                    board[i + 1][k - 1] = '-'
+                if i - 1 >= 0 and k + 1 < 10 and board[i - 1][k] == '-'\
+                        and board[i][k + 1] == '-':
+                    board[i - 1][k + 1] = '-'
     return board
-
-
-#print(read_file('field'))
-#print(has_ship(read_file('field'),('C',1)))
-#print(ship_size(read_file('field'),('e',8)))
-generate_field()
-#field_to_str(read_file('field'))
-#print(is_valid(read_file('field')))

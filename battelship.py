@@ -24,14 +24,14 @@ def read_file(filename):
 
 
 def has_ship(field, coordinates):
-    '''
+    """
 
     (list, tuple) -> (bool)
 
     Uses a list of lists (field) and coordinates of the needed element and verify if there is a ship with asked
     coordinates in that field. Returns True or False.
 
-    '''
+    """
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     if '*' in field[coordinates[1] - 1][letters.index(coordinates[0].upper())]:
         return True
@@ -40,17 +40,17 @@ def has_ship(field, coordinates):
 
 
 def ship_size(field, coordinates):
-    '''
+    """
 
     (list, tuple) -> (int)
 
     Uses a list of lists (field) and coordinates of the needed element. Return the size of a ship, coordinates of
     a part of which are given.
 
-    '''
+    """
     len1 = 0
     letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-    if has_ship(field, coordinates) == False:
+    if has_ship(field, coordinates) is False:
         return len1
     else:
         len2 = 1
@@ -98,16 +98,16 @@ def ship_size(field, coordinates):
 
 
 def is_valid(field):
-    '''
+    """
 
     (list) -> (bool)
 
     Uses a list of lists. Determinates if given field is valid. Returns True or False.
 
-    '''
+    """
     if len(field) != 10:
         return False
-    lst = [0,0,0,0]
+    lst = [0, 0, 0, 0]
     for i in field:
         if len(i) != 10:
             return False
@@ -120,20 +120,20 @@ def is_valid(field):
                 lst[length - 1] += 1
     for i in range(len(lst)):
         lst[i] /= i + 1
-    if lst != [4,3,2,1]:
+    if lst != [4, 3, 2, 1]:
         return False
     return True
 
 
 def field_to_str(field):
-    '''
+    """
 
     (list) -> (str)
 
     Converts a list of lists into string and shows field on the screen.
 
-    '''
-    print(' ','_' * 11)
+    """
+    print(' ', '_' * 11)
     for i in field:
         a = ''
         for k in i:
@@ -151,15 +151,15 @@ def field_to_str(field):
 
 
 def generate_field():
-    '''
+    """
 
     () -> (list)
 
     Generates new field.
 
-    '''
+    """
     import random
-    new_board = [[' ' for i in range(10)] for i in range(10)]
+    new_board = [[' ' for i in range(10)] for k in range(10)]
     num = random.randint(1, 2)
     position1_4 = random.randint(0, 9)
     position2_4 = random.randint(0, 9)
@@ -303,6 +303,9 @@ def generate_field():
 def paint_out_ship(board):
     """
     (list) -> (list)
+
+    Paints cellules around ships.
+
     """
     for i in range(len(board)):
         for k in range(len(board[i])):
